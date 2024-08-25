@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
 
     steps:
     - uses: actions/checkout@v4
@@ -22,4 +25,15 @@ jobs:
       run: npm install
 
     - name: Run Gulp
-      run: gulp
+      run: npx gulp
+
+    - name: Run security scan
+      run: npm audit
+      continue-on-error: true
+
+    - name: Check for vulnerabilities
+      run: |
+        if [ -n "$(npm audit --json | jq -r '.metadata.vulnerabilities | to_entries | map(select(.value > 0)) | length')" ]; then
+          echo "Vulnerabilities found!";
+          exit 1;
+        fi
