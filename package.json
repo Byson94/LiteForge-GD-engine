@@ -6,7 +6,6 @@
   "author": "Byson",
   "version": "1.0.0",
   "dependencies": {
-    
     "@electron/remote": "^2.0.8"
   },
   "scripts": {
@@ -24,6 +23,7 @@
     ],
     "directories": {
       "buildResources": "buildResources"
-    }
+    },
+    "publish": null  // Disable automatic publishing
   }
 }
