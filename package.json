@@ -24,6 +24,6 @@
     "directories": {
       "buildResources": "buildResources"
     },
-    "publish": null  // Disable automatic publishing
+    "publish": null
   }
 }
